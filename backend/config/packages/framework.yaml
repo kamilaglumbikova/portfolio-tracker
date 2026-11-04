@@ -1,12 +1,18 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
-    secret: '%env(APP_SECRET)%'
+    secret: "%env(APP_SECRET)%"
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
     #esi: true
     #fragments: true
+    http_client:
+        scoped_clients:
+            finnhub.client:
+                base_uri: "https://finnhub.io/api/v1/"
+                headers:
+                    X-Finnhub-Token: "%env(FINNHUB_API_KEY)%"
 
 when@test:
     framework:
